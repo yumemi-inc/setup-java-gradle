@@ -1,0 +1,11 @@
+name: "Setup Java - Gradle"
+description: "A GitHub Action that sets up a Java JDK and Gradle environment."
+author: "YUMEMI Inc."
+branding:
+  icon: "box"
+  color: "blue"
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: echo 'hello'
