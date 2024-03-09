@@ -1,11 +1,53 @@
 name: "Setup Java - Gradle"
-description: "A GitHub Action that sets up a Java JDK and Gradle environment."
+description: "A GitHub Action that sets up a Java and Gradle environment."
 author: "YUMEMI Inc."
 branding:
   icon: "box"
   color: "blue"
+inputs:
+  java-version:
+    description: "Java version to use."
+    required: false
+    default: "17"
+  java-distribution: # original name is 'distribution'
+    description: "Java distribution to use."
+    required: false
+    default: "zulu"
+  cache-disabled:
+    description: "Whether to read/write Gradle cache."
+    required: false
+    default: "false"
+  cache-read-only:
+    description: "Whether to only read Gradle cache."
+    required: false
+    default: "true"
+  gradle-home-cache-cleanup:
+    description: "Whether to remove stale/unused Gradle cache before writing."
+    required: false
+    default: "false"
+  gradle-build-report: # original name is 'add-job-summary'
+    description: "Whether to display Gradle build reports in Job Summaries."
+    required: false
+    default: "always"
+  kotlin-compiler-report:
+    description: "Whether to apply Kotlin compiler Problem Matchers."
+    required: false
+    default: "true"
 runs:
   using: "composite"
   steps:
-    - shell: bash
-      run: echo 'hello'
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: ${{ inputs.java-distribution }}
+        java-version: ${{ inputs.java-version }}
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        cache-disabled: ${{ inputs.cache-disabled }}
+        cache-read-only: ${{ inputs.cache-read-only }}
+        gradle-home-cache-cleanup: ${{ inputs.gradle-home-cache-cleanup }}
+        add-job-summary: ${{ inputs.gradle-build-report }}
+    - name: Setup Problem Matchers
+      if: inputs.kotlin-compiler-report != 'false'
+      uses: yumemi-inc/problem-matchers/kotlin-gradle@v1

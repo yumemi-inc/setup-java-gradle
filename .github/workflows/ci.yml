@@ -23,3 +23,12 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Use this action
         uses: ./
+        with:
+          cache-read-only: false
+      - name: Check out samlpe project 
+        uses: actions/checkout@v4
+        with:
+          repository: google/iosched
+          path: sample
+      - name: Build samlpe project for check
+        run: cd sample && ./gradlew assembleDebug
