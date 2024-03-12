@@ -34,7 +34,7 @@ If you want to change the version, specify it with `java-version` input.
 
 ## About writing cache
 
-By default, the internally used gradle/gradle-build-action writes cache in workflow on default branch, but to prevent careless writes, this yumemi-inc/setup-java-gradle action does not write cache anywhere by default.
+By default, the internally used *gradle/gradle-build-action* writes cache in workflow on default branch, but to prevent careless writes, this *yumemi-inc/setup-java-gradle* action does not write cache anywhere by default.
 
 You can set `cache-read-only` input to `false` when you want to write the cache, but it is simpler to prepare the following workflow.
 
@@ -67,7 +67,11 @@ Alternatively, if the default branch is frequently updated, you can trigger [pus
 
 In the above workflow, `true` is specified for `gradle-home-cache-cleanup` input to prevent size increase due to cache accumulation, but if reusability is a priority, specify `false`(default).
 
-When writing to cache, the Gradle daemon is automatically stopped by internally used gradle/gradle-build-action, so there is no need to explicitly stop it.
+When writing to cache, the Gradle daemon is automatically stopped by internally used *gradle/gradle-build-action*, so there is no need to explicitly stop it.
+
+The cache read/write status is displayed in the Job Summaries as shown below, so check this and adjust your workflow.
+
+![image](doc/image.png)
 
 ## Using Gradle build cache
 
