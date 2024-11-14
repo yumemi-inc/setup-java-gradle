@@ -28,7 +28,7 @@ jobs:
       - name: Check out samlpe project 
         uses: actions/checkout@v4
         with:
-          repository: google/iosched
+          repository: yumemi-inc/Tart
           path: sample
       - name: Build samlpe project for check
         run: cd sample && ./gradlew assembleDebug

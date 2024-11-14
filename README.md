@@ -24,7 +24,7 @@ Place this action step before Gradle tasks.
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: yumemi-inc/setup-java-gradle@v1
+- uses: yumemi-inc/setup-java-gradle@v2
 - run: ./gradlew ...
 ```
 
@@ -54,7 +54,7 @@ jobs:
       - uses: actions/checkout@v4
         # with: 
         #   ref: .. # specify if there is a branch other than the default branch where the code is frequently updated
-      - uses: yumemi-inc/setup-java-gradle@v1
+      - uses: yumemi-inc/setup-java-gradle@v2
         with:
           cache-read-only: false
           gradle-home-cache-cleanup: true
