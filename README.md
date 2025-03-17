@@ -24,11 +24,11 @@ Place this action step before Gradle tasks.
 
 ```yaml
 - uses: actions/checkout@v4
-- uses: yumemi-inc/setup-java-gradle@v2
+- uses: yumemi-inc/setup-java-gradle@v3
 - run: ./gradlew ...
 ```
 
-By default, the Java version set up is `17`.
+By default, the Java version set up is `21`.
 Because it is the mainstream in current Android application development.
 If you want to change the version, specify it with `java-version` input.
 
@@ -54,7 +54,7 @@ jobs:
       - uses: actions/checkout@v4
         # with: 
         #   ref: .. # specify if there is a branch other than the default branch where the code is frequently updated
-      - uses: yumemi-inc/setup-java-gradle@v2
+      - uses: yumemi-inc/setup-java-gradle@v3
         with:
           cache-read-only: false
           gradle-home-cache-cleanup: true

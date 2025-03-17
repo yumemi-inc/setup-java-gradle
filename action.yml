@@ -8,7 +8,7 @@ inputs:
   java-version:
     description: "Java version to use."
     required: false
-    default: "17"
+    default: "21"
   java-distribution: # original name is 'distribution'
     description: "Java distribution to use."
     required: false
