@@ -25,6 +25,7 @@ jobs:
         uses: ./
         with:
           cache-read-only: false
+          kotlin-compiler-report: false # Because there are many warnings in nowinandroid
       - name: Check out sample project
         uses: actions/checkout@v5
         with:
