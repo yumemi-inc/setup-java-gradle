@@ -19,3 +19,4 @@ jobs:
           if [ '${{ github.event.release.tag_name }}' != "$major" ]; then
             git push --force origin "HEAD:refs/heads/$major"
           fi
+
