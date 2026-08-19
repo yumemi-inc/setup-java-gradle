@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.runner }}
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -25,10 +25,12 @@ jobs:
         uses: ./
         with:
           cache-read-only: false
-      - name: Check out samlpe project 
-        uses: actions/checkout@v4
+          kotlin-compiler-report: false # Because there are many warnings in nowinandroid
+      - name: Check out sample project
+        uses: actions/checkout@v5
         with:
           repository: android/nowinandroid
           path: sample
-      - name: Build samlpe project for check
+      - name: Build sample project for check
         run: cd sample && ./gradlew :app:assembleDemoDebug
+

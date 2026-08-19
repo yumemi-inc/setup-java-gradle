@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Push HEAD to major version branch
         run: |
           major="$(echo '${{ github.event.release.tag_name }}' | sed -E 's/(v[0-9]+)\..+/\1/')"
           if [ '${{ github.event.release.tag_name }}' != "$major" ]; then
             git push --force origin "HEAD:refs/heads/$major"
           fi
+
