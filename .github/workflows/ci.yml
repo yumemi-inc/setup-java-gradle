@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.runner }}
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -26,7 +26,7 @@ jobs:
         with:
           cache-read-only: false
       - name: Check out samlpe project 
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: android/nowinandroid
           path: sample
