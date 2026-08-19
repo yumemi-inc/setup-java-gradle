@@ -25,10 +25,10 @@ jobs:
         uses: ./
         with:
           cache-read-only: false
-      - name: Check out samlpe project 
+      - name: Check out sample project
         uses: actions/checkout@v5
         with:
           repository: android/nowinandroid
           path: sample
-      - name: Build samlpe project for check
+      - name: Build sample project for check
         run: cd sample && ./gradlew :app:assembleDemoDebug
