@@ -33,4 +33,3 @@ jobs:
           path: sample
       - name: Build sample project for check
         run: cd sample && ./gradlew :app:assembleDemoDebug
-
