@@ -25,6 +25,11 @@ inputs:
     description: "Whether to remove stale/unused Gradle cache before writing."
     required: false
     default: "false"
+    deprecation-message: "This input has been superceded by the 'cache-cleanup' input parameter."
+  cache-cleanup:
+    description: "When to remove stale/unused Gradle cache before writing: never, on-success, or always."
+    required: false
+    default: "never"
   gradle-build-report: # original name is 'add-job-summary'
     description: "Whether to display Gradle build reports in Job Summaries."
     required: false
@@ -46,7 +51,7 @@ runs:
       with:
         cache-disabled: ${{ inputs.cache-disabled }}
         cache-read-only: ${{ inputs.cache-read-only }}
-        gradle-home-cache-cleanup: ${{ inputs.gradle-home-cache-cleanup }}
+        cache-cleanup: ${{ inputs.cache-cleanup }}
         add-job-summary: ${{ inputs.gradle-build-report }}
     - name: Setup Problem Matchers
       if: inputs.kotlin-compiler-report != 'false'

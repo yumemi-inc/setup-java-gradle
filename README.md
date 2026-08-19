@@ -23,8 +23,8 @@ Currently, the minimum input items are passed.
 Place this action step before Gradle tasks.
 
 ```yaml
-- uses: actions/checkout@v4
-- uses: yumemi-inc/setup-java-gradle@v3
+- uses: actions/checkout@v5
+- uses: yumemi-inc/setup-java-gradle@v4
 - run: ./gradlew ...
 ```
 
@@ -51,13 +51,13 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         # with: 
         #   ref: .. # specify if there is a branch other than the default branch where the code is frequently updated
-      - uses: yumemi-inc/setup-java-gradle@v3
+      - uses: yumemi-inc/setup-java-gradle@v4
         with:
           cache-read-only: false
-          gradle-home-cache-cleanup: true
+          cache-cleanup: 'on-success'
       - run: ./gradlew dependencies # some Gradle task
 ```
 
@@ -65,7 +65,7 @@ Workflows triggered by [schedule](https://docs.github.com/en/actions/using-workf
 Cache on default branch available for all workflows.
 Alternatively, if the default branch is frequently updated, you can trigger [push](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#push) events on the default branch rather than schedule events.
 
-In the above workflow, `true` is specified for `gradle-home-cache-cleanup` input to prevent size increase due to cache accumulation, but if reusability is a priority, specify `false`(default).
+In the above workflow, `on-success` is specified for `cache-cleanup` input to prevent size increase due to cache accumulation, but if reusability is a priority, specify `never`(default).
 
 When writing to cache, the Gradle daemon is automatically stopped by internally used *gradle/gradle-build-action*, so there is no need to explicitly stop it.
 
