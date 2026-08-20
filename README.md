@@ -57,15 +57,12 @@ jobs:
       - uses: yumemi-inc/setup-java-gradle@v4
         with:
           cache-read-only: false
-          cache-cleanup: 'on-success'
       - run: ./gradlew dependencies # some Gradle task
 ```
 
 Workflows triggered by [schedule](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) events run on the default branch, and cache is written to the default branch.
 Cache on default branch available for all workflows.
 Alternatively, if the default branch is frequently updated, you can trigger [push](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#push) events on the default branch rather than schedule events.
-
-In the above workflow, `on-success` is specified for `cache-cleanup` input to prevent size increase due to cache accumulation, but if reusability is a priority, specify `never`(default).
 
 When writing to cache, the Gradle daemon is automatically stopped by internally used *gradle/gradle-build-action*, so there is no need to explicitly stop it.
 
