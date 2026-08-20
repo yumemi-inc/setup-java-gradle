@@ -24,7 +24,7 @@ inputs:
   cache-cleanup:
     description: "When to remove stale/unused Gradle cache before writing: never, on-success, or always."
     required: false
-    default: "never"
+    default: "on-success"
   gradle-build-report: # original name is 'add-job-summary'
     description: "Whether to display Gradle build reports in Job Summaries."
     required: false
